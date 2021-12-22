@@ -1,0 +1,52 @@
+random
+type	name	size	time
+square	bubble	7485	1.911
+square	bubble+	7485	1.8
+square	select	7485	0.203
+square	insert	7485	1.907
+fast	quick	129517	0.19
+fast	quick+	129517	0.167
+fast	merge	129517	0.266
+fast	default	129517	0.575
+fast	stable	129517	0.5
+fast	heap	129517	0.587
+
+sorted
+type	name	size	time
+square	bubble	7926	0.564
+square	bubble+	7926	0
+square	select	7926	0.535
+square	insert	7926	0
+fast	quick	103900	0.047
+fast	quick+	103900	0.048
+fast	merge	103900	0.18
+fast	default	103900	0.206
+fast	stable	103900	0.137
+fast	heap	103900	0.432
+
+reversed
+type	name	size	time
+square	bubble	7291	3.09
+square	bubble+	7291	2.535
+square	select	7291	0.254
+square	insert	7291	2.791
+fast	quick	112556	0.06
+fast	quick+	112556	0.044
+fast	merge	112556	0.097
+fast	default	112556	0.131
+fast	stable	112556	0.16
+fast	heap	112556	0.241
+
+partially sorted
+type	name	size	time
+square	bubble	13316	1.371
+square	bubble+	13316	1.265
+square	select	13316	0.931
+square	insert	13316	0.472
+fast	quick	132698	0.032
+fast	quick+	132698	0.032
+fast	merge	132698	0.109
+fast	default	132698	0.17
+fast	stable	132698	0.208
+fast	heap	132698	0.453
+

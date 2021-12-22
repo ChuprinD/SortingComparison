@@ -87,40 +87,52 @@ void quick_advanced_sort (long long size, long long* arr)
     if (size - 1 > i) quick_sort (size - i, arr + i);
     }
 
-void merge (long long first, long long last, long long size, long long* arr)
+void merge (long long begin, long long end, long long* arr)
     {
-    long long mid = (first + last) / 2;
-    long long* tmp_arr = new long long[size];
-    long long start = first;
-    long long finish = mid + 1;
+    long long mid = begin + (end - begin) / 2;
+    long long size_left = mid - begin + 1;
+    long long size_right = end - mid;
 
-    for (int i = first; i <= last; i++)
+    long long* left = new long long[size_left];
+    long long* right = new long long[size_right];
+
+    for (long long i = 0; i < size_left; i++)
+        left[i] = arr[begin + i];
+    for (long long j = 0; j < size_right; j++)
+        right[j] = arr[mid + 1 + j];
+
+    long long index_left = 0, index_right = 0, index_res = begin;
+    
+    while (index_left < size_left && index_right < size_right)
         {
-        if ((start <= mid) && ((finish > last) || (arr[start] < arr[finish])))
-            tmp_arr[i] = arr[start++];
+        if (left[index_left] <= right[index_right])
+            arr[index_res++] = left[index_left++];
         else
-            tmp_arr[i] = arr[finish++];    
+            arr[index_res++] = right[index_right++];
         }
 
-    for (int i = first; i <= last; i++)
-        arr[i] = tmp_arr[i];
+    while (index_left < size_left)
+        arr[index_res++] = left[index_left++];
 
-    delete[] tmp_arr;    
+    while (index_right < size_right)
+        arr[index_res++] = right[index_right++];
+
     } 
 
-void merge_recursion (long long first, long long last, long long size, long long* arr)
+void merge_recursion (long long begin, long long end, long long* arr)
     {
-    if (first < last)
-        {
-        merge_recursion (first, (first + last) / 2, size, arr);
-        merge_recursion ((first + last) / 2 + 1, last, size, arr);
-        merge (first, last, size, arr);
-        }
+    if (begin >= end)
+        return;
+
+    merge_recursion (begin, begin + (end - begin) / 2, arr);
+    merge_recursion (begin + (end - begin) / 2 + 1, end, arr);
+    merge (begin, end, arr);
+    
     }
 
 void merge_sort (long long size, long long* arr)
     {
-    merge_recursion (0, size - 1, size, arr);
+    merge_recursion (0, size - 1, arr);
     }
 
 void built_in_sort (long long size, long long* arr)
